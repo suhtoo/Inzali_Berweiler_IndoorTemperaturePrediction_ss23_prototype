@@ -1,4 +1,4 @@
-# Inzali_Berweiler_IndoorTemperaturePrediction_ss23_prototype
+# Indoor Temperature Prediction with Machine Learning 
 
 
 This GitHub repository contains the code and documentation for an indoor temperature prediction prototype developed using machine learning and MQTT communication. The prototype aims to provide accurate indoor temperature forecasts based on historical weather data, simulated building-specific information, and advanced deep learning techniques.
