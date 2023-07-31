@@ -45,3 +45,9 @@ This GitHub repository contains the code and documentation for an indoor tempera
 
 1. Deploy the prototype to start predicting indoor temperatures in real-time.
 2. Access the predicted temperatures through subscribing devices or your user interface.
+
+
+## Acknowledgments:
+
+Special thanks to the open-source community and developers of all the necessary tools and libraries which made this prototype possible. 
+In this prototype, the machine learning methods, skills and understandings learned from IBM open courseware "Machine Learning with Python: A Practical Introduction" were applied. 
