@@ -3,7 +3,7 @@ import numpy as np
 import random
 import os
 
-os.chdir('/Users/hiz/Desktop/RWTH_3rdSem/CR_Protyping Project DSS - BIM/Project/Inzali_Berweiler_IndoorTemperaturePrediction_ss23_prototype_local/4_deploymentModule')
+os.chdir('/Users/hiz/Desktop/RWTH_3rdSem/CR_Protyping Project DSS - BIM/Project/Inzali_Berweiler_IndoorTemperaturePrediction_ss23_prototype/4_deploymentModule')
 
 # Function to generate random data for the DataFrame
 def generate_random_data():
