@@ -54,8 +54,7 @@ This GitHub repository contains the code and documentation for an indoor tempera
 2. Access the predicted temperatures through subscribing devices or your user interface.
 
 
-### Prototype Using Sensor Data
-7_sensorDataModel
+### Prototype Using Sensor Data: 7_sensorDataModel
 
 This is a seperate prototype sample using sensor data as data collection method. Completely independent from other components of the prototype packages above. 
 
