@@ -25,7 +25,7 @@ This GitHub repository contains the code and documentation for an indoor tempera
 1. Gather historical indoor temperature data from buildings equipped with temperature sensors.
 2. Obtain weather data (temperature, humidity, solar radiation) from reliable sources or simulate weather scenarios using OpenModelica.
 
-### Data Preprocessing: 3_modelTrainingModule
+#### Data Preprocessing: 3_modelTrainingModule
 
 1. Prepare the historical indoor temperature and weather data for training the model.
 2. Handle missing values and normalize the features to a consistent range.
