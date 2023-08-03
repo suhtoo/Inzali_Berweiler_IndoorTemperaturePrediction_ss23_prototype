@@ -1,32 +1,44 @@
-import paho.mqtt.publish as publish
-import time
 import pandas as pd
-from datetime import datetime, timedelta
-import os
+import time
+import paho.mqtt.client as mqtt
 
-os.chdir('/Users/hiz/Desktop/RWTH_3rdSem/CR_Protyping Project DSS - BIM/Project/Inzali_Berweiler_IndoorTemperaturePrediction_ss23_prototype/5_MQTTModule')
+# MQTT Broker details
+broker_address = "mqtt.eclipseprojects.io"  # Replace with your MQTT broker address
+broker_port = 1883  # Replace with your MQTT broker port
+topic = "room_environment_data"  # The topic to which data will be published
 
-# Function to publish roomTemp to the MQTT broker
-def publish_roomTemp_to_mqtt(roomTemp_values):
-    mqtt_broker = 'mqtt.eclipseprojects.io'
-    mqtt_topic = "roomTemp_predictions"
+def on_connect(client, userdata, flags, rc):
+    if rc == 0:
+        print("Connected to MQTT Broker!")
+    else:
+        print("Failed to connect, return code %d\n", rc)
 
-    current_time = datetime.now()
+def on_publish(client, userdata, mid):
+    print("Data published successfully!")
 
-    for i, roomTemp in enumerate(roomTemp_values):
-        future_time = current_time + timedelta(minutes=5)
-        current_time_str = current_time.strftime('%Y-%m-%d %H:%M:%S')
-        payload = f"In 5 minutes, the predicted room temperature is {roomTemp:.2f}"
-        publish.single(mqtt_topic, payload=payload, hostname=mqtt_broker)
-        print(f"Sent: {payload}")
-        time.sleep(30)  # To avoid flooding the MQTT broker
+def send_data_through_mqtt(dataframe):
+    client = mqtt.Client()
+    client.on_connect = on_connect
+    client.on_publish = on_publish
+
+    client.connect(broker_address, broker_port)
+    client.loop_start()
+
+    for _, row in dataframe.iterrows():
+        values = row.values
+        payload = ",".join(str(value) for value in values)
+        print(f"Sending data: {payload}")
+        client.publish(topic, payload)
+
+        # Wait for 30 seconds
+        time.sleep(30)
+
+    client.loop_stop()
+    client.disconnect()
 
 if __name__ == "__main__":
-    # Load the predictions from the file (e.g., CSV)
+    # Load the DataFrame from the CSV file
     predictions_df = pd.read_csv("/Users/hiz/Desktop/RWTH_3rdSem/CR_Protyping Project DSS - BIM/Project/Inzali_Berweiler_IndoorTemperaturePrediction_ss23_prototype/4_deploymentModule/predictions.csv")
-    roomTemp_predictions = predictions_df["roomTemp_predictions"].values
 
-    # Send the predictions for 5 minutes into the future
-    print("Sending roomTemp predictions for 5 minutes into the future...")
-    publish_roomTemp_to_mqtt(roomTemp_predictions)
-    print("Room temperature predictions sent for 5 minutes into the future!")
+    # Send the data through MQTT
+    send_data_through_mqtt(predictions_df)
