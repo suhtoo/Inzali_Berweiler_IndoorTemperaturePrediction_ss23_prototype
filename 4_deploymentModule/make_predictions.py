@@ -2,10 +2,10 @@ import joblib
 import pandas as pd
 import os
 
-os.chdir('/Users/hiz/Desktop/RWTH_3rdSem/CR_Protyping Project DSS - BIM/Project/Inzali_Berweiler_IndoorTemperaturePrediction_ss23_prototype_local/4_deploymentModule')
+os.chdir('/Users/hiz/Desktop/RWTH_3rdSem/CR_Protyping Project DSS - BIM/Project/Inzali_Berweiler_IndoorTemperaturePrediction_ss23_prototype/4_deploymentModule')
 
 # Load the trained ML model
-rf_model = joblib.load("/Users/hiz/Desktop/RWTH_3rdSem/CR_Protyping Project DSS - BIM/Project/Inzali_Berweiler_IndoorTemperaturePrediction_ss23_prototype_local/3_modelTrainingModule/rf_model.joblib")
+rf_model = joblib.load("/Users/hiz/Desktop/RWTH_3rdSem/CR_Protyping Project DSS - BIM/Project/Inzali_Berweiler_IndoorTemperaturePrediction_ss23_prototype/3_modelTrainingModule/rf_model.joblib")
 
 # Function to make roomTemp predictions using the model and the DataFrame
 def make_roomTemp_predictions(model, dataframe):
